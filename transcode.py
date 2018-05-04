@@ -23,12 +23,11 @@ def create_entry(record):
 
 def transcode(filename):
     """Returns ordered dictionary of entries grouped by date, with associated entries formatted as with time string
-    entry of '<description>, <number>h <number>m' format. No CSV file will return empty bucket."""
+    entry of '<description>, <number>h <number>m' format."""
     buckets = collections.OrderedDict()
     try:
         with open(filename, 'r') as csvfile:
-            entries = list(csv.reader(csvfile, delimiter=',', quotechar='|'))
-            for record in entries:
+            for record in list(csv.reader(csvfile, delimiter=',', quotechar='|')):
                 try:
                     entry = create_entry(record)
                     if record[START_DATE] in buckets:
