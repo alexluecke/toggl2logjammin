@@ -12,7 +12,7 @@ START_DATE = 7
 
 def create_entry(record):
     """Returns string for time record in '<description>, <number>h <number>m' format for record. Raises exception when
-    not formatted correctly or entry has no hours or minutes in record."""
+    entry is not formatted correctly or has no hours or minutes."""
     hours, minutes, seconds = [int(x) for x in record[DURATION].split(':')]
 
     if not hours | minutes:
@@ -22,8 +22,8 @@ def create_entry(record):
 
 
 def transcode(filename):
-    """Returns ordered dictionary of entries grouped by date, with associated entries formatted as with time string
-    entry of '<description>, <number>h <number>m' format."""
+    """Returns ordered dictionary of entries grouped by date, withe each entry formatted as:
+    '<description>, <number>h <number>m'."""
     buckets = collections.OrderedDict()
     try:
         with open(filename, 'r') as csvfile:
